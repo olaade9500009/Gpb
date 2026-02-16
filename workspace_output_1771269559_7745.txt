@@ -1,0 +1,5 @@
+127.0.0.1 - - [16/Feb/2026 19:27:22] "GET /?password=9ebb72e1-0803-4f2a-8421-ff6951889c3f HTTP/1.1" 200 -
+172.16.0.1 - - [16/Feb/2026 19:27:22] "GET /?hideControls=true&password=9ebb72e1-0803-4f2a-8421-ff6951889c3f HTTP/1.1" 200 -
+172.16.0.1 - - [16/Feb/2026 19:27:23] "GET /assets/owner.jpg HTTP/1.1" 200 -
+172.16.0.1 - - [16/Feb/2026 19:27:24] "GET /css/style.css HTTP/1.1" 200 -
+172.16.0.1 - - [16/Feb/2026 19:27:24] "GET /js/app.js HTTP/1.1" 200 -

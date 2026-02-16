@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - Global Pilgrim Bank</title>
+    <link rel="stylesheet" href="css/style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>GLOBAL PILGRIM BANK</h1>
+        <h3 id="headerName">Welcome, Customer</h3>
+    </header>
+
+    <div class="dashboard">
+        <!-- Login Section (shown by default) -->
+        <div id="loginSection" class="section">
+            <h2>🔐 Login to Your Account</h2>
+            <input type="text" id="custAccountLogin" placeholder="Account Number (GPB...)">
+            <input type="password" id="custPasswordLogin" placeholder="Password">
+            <button onclick="customerLogin()">Login</button>
+        </div>
+
+        <!-- Customer Panel (hidden by default) -->
+        <div id="custPanel" style="display: none;">
+            <!-- Balance Card -->
+            <div class="balance-card">
+                <h2>💰 Account Balance</h2>
+                <p id="custBalance">$0.00</p>
+                <p id="custAccount" style="color: #90caf9; margin-top: 10px;">Account: GPB000000000</p>
+                <p id="custWallet" style="color: #b0bec5; font-size: 0.9em;">Wallet: USD-WALLET-ADDRESS</p>
+            </div>
+
+            <!-- Multi-Currency Balances -->
+            <div class="section">
+                <h2>💱 Multi-Currency Wallet</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px;">
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; text-align: center;">
+                        <p>USD</p>
+                        <p id="balanceUSD" style="font-size: 1.5em; color: #ffd700;">$0.00</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; text-align: center;">
+                        <p>NGN</p>
+                        <p id="balanceNGN" style="font-size: 1.5em; color: #66bb6a;">₦0.00</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; text-align: center;">
+                        <p>EUR</p>
+                        <p id="balanceEUR" style="font-size: 1.5em; color: #4fc3f7;">€0.00</p>
+                    </div>
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; text-align: center;">
+                        <p>GBP</p>
+                        <p id="balanceGBP" style="font-size: 1.5em; color: #ffa726;">£0.00</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Send Money -->
+            <div class="section">
+                <h2>💸 Send Money</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <input type="text" id="recipientAccount" placeholder="Recipient Account Number">
+                    <input type="number" id="sendAmount" placeholder="Amount">
+                    <select id="currency">
+                        <option value="USD">USD - US Dollar</option>
+                        <option value="NGN">NGN - Nigerian Naira</option>
+                        <option value="EUR">EUR - Euro</option>
+                        <option value="GBP">GBP - British Pound</option>
+                    </select>
+                    <select id="transferType">
+                        <option value="local">Local Transfer (Bank A → Bank B)</option>
+                        <option value="international">International Transfer</option>
+                    </select>
+                </div>
+                <div id="internationalFields" style="display: none; margin-top: 15px;">
+                    <input type="text" id="recipientBank" placeholder="Recipient Bank Name">
+                    <input type="text" id="swiftCode" placeholder="SWIFT/BIC Code">
+                </div>
+                <button onclick="sendMoney()" style="margin-top: 15px;">Send Money</button>
+            </div>
+
+            <!-- USSD Simulation -->
+            <div class="section">
+                <h2>📱 USSD Banking Simulation</h2>
+                <p style="color: #90caf9; margin-bottom: 15px;">Simulate USSD codes like *999#</p>
+                <input type="text" id="ussdCode" placeholder="Enter USSD code (e.g., *999#, *999*1#)">
+                <button onclick="processUSSD()">Execute</button>
+                <div id="ussdResult" class="ussd-display"></div>
+            </div>
+
+            <!-- Airtime & Data -->
+            <div class="section">
+                <h2>📞 Buy Airtime & Data</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <input type="text" id="airtimePhone" placeholder="Phone Number">
+                    <input type="number" id="airtimeAmount" placeholder="Amount (NGN)">
+                    <select id="airtimeProvider">
+                        <option value="MTN">MTN</option>
+                        <option value="9mobile">9mobile</option>
+                        <option value="Glo">Globacom</option>
+                        <option value="Airtel">Airtel</option>
+                    </select>
+                </div>
+                <button onclick="buyAirtime()" style="margin-top: 15px;">Buy Airtime</button>
+            </div>
+
+            <!-- Bill Payment -->
+            <div class="section">
+                <h2>💡 Pay Bills</h2>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <select id="billType">
+                        <option value="Electricity">Electricity</option>
+                        <option value="School Fees">School Fees</option>
+                        <option value="Cable TV">Cable TV</option>
+                        <option value="Internet">Internet</option>
+                        <option value="Water">Water Bill</option>
+                    </select>
+                    <input type="text" id="billAccount" placeholder="Account/Meter Number">
+                    <input type="number" id="billAmount" placeholder="Amount (NGN)">
+                </div>
+                <button onclick="payBill()" style="margin-top: 15px;">Pay Bill</button>
+            </div>
+
+            <!-- Virtual Cards -->
+            <div class="section">
+                <h2>💳 Virtual Cards</h2>
+                <p style="color: #90caf9; margin-bottom: 15px;">Create virtual cards for PayPal, GPay, Western Union, and online payments</p>
+                <div class="action-buttons">
+                    <button onclick="createVirtualCard('VISA')" class="action-btn">Create VISA Card</button>
+                    <button onclick="createVirtualCard('MasterCard')" class="action-btn">Create MasterCard</button>
+                    <button onclick="createVirtualCard('Verve')" class="action-btn">Create Verve Card</button>
+                </div>
+                <div id="virtualCards"></div>
+            </div>
+
+            <!-- Robot Trading -->
+            <div class="section">
+                <h2>🤖 Robot Trading</h2>
+                <p style="color: #90caf9; margin-bottom: 15px;">
+                    PilgrimCoin: $0.50 per coin | Global Pilgrim Share: $5.00 per share
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                    <select id="tradeCoin">
+                        <option value="PilgrimCoin">PilgrimCoin ($0.50)</option>
+                        <option value="GlobalPilgrimShare">Global Pilgrim Share ($5.00)</option>
+                    </select>
+                    <input type="number" id="tradeAmount" placeholder="Investment Amount (USD)">
+                </div>
+                <button onclick="robotTrade()" style="margin-top: 15px;">Run Trading Cycle</button>
+            </div>
+
+            <!-- Mining System -->
+            <div class="section">
+                <h2>⛏️ Crypto Mining</h2>
+                <p style="color: #90caf7; margin-bottom: 15px;">Create mining wallets to earn cryptocurrency. Each mining produces 50 units of the selected currency.</p>
+                <div id="miningWallets"></div>
+            </div>
+
+            <!-- Transaction History -->
+            <div class="section">
+                <h2>📊 Transaction History</h2>
+                <div id="ledgerDisplay" class="transaction-list"></div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section">
+                <h2>⚡ Quick Actions</h2>
+                <div class="action-buttons">
+                    <button onclick="alert('Balance Check')" class="action-btn btn-secondary">Check Balance</button>
+                    <button onclick="alert('Statement')" class="action-btn btn-secondary">View Statement</button>
+                    <button onclick="alert('Settings')" class="action-btn btn-secondary">Account Settings</button>
+                    <button onclick="alert('Support')" class="action-btn btn-secondary">Customer Support</button>
+                </div>
+            </div>
+
+            <!-- Logout -->
+            <div style="text-align: center; margin: 40px 0;">
+                <button onclick="logoutCustomer()" class="btn btn-danger" style="max-width: 300px;">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function logoutCustomer() {
+            localStorage.removeItem("gpb_customerAccount");
+            currentCustomer = null;
+            document.getElementById("custPanel").style.display = "none";
+            document.getElementById("loginSection").style.display = "block";
+            alert("You have been logged out successfully.");
+        }
+
+        // Show/hide international transfer fields
+        document.getElementById("transferType").addEventListener("change", function() {
+            const intlFields = document.getElementById("internationalFields");
+            if (this.value === "international") {
+                intlFields.style.display = "block";
+            } else {
+                intlFields.style.display = "none";
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Global Pilgrim Bank</title>
+    <link rel="stylesheet" href="css/style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>GLOBAL PILGRIM BANK</h1>
+        <h3>Admin Terminal - Olawale Abdul-Ganiyu Adeshina (Adegan95)</h3>
+    </header>
+
+    <div class="dashboard">
+        <!-- Balance Overview -->
+        <div class="balance-card">
+            <h2>💰 Financial Overview</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px;">
+                <div>
+                    <p>Profit Balance</p>
+                    <p id="profitBalance" style="color: #66bb6a;">$0.00</p>
+                </div>
+                <div>
+                    <p>Main Balance</p>
+                    <p id="mainBalance" style="color: #4fc3f7;">$0.00</p>
+                </div>
+                <div>
+                    <p>Total Customers</p>
+                    <p id="customerCount">0</p>
+                </div>
+                <div>
+                    <p>Total Transactions</p>
+                    <p id="transactionCount">0</p>
+                </div>
+            </div>
+            <button onclick="transferProfit()" class="btn" style="max-width: 300px; margin-top: 20px;">Transfer Profit to Main Balance</button>
+        </div>
+
+        <!-- Network Monitoring -->
+        <div class="section">
+            <h2>📡 Network Security Monitoring</h2>
+            <div class="network-monitor">
+                <h3>🚨 Real-time Security Alerts</h3>
+                <div class="monitoring-info">
+                    <p><strong>Current Network:</strong> AUTHORIZED-NETWORK-OWNER</p>
+                    <p><strong>Status:</strong> <span style="color: #66bb6a;">SECURE</span></p>
+                    <p><strong>Admin Sessions:</strong> <span id="adminSessions">1</span></p>
+                    <p><strong>Location:</strong> Nigeria</p>
+                    <p><strong>Last Update:</strong> <span id="networkUpdate">Just now</span></p>
+                </div>
+                <div id="securityAlerts"></div>
+            </div>
+        </div>
+
+        <!-- Create Customer -->
+        <div class="section">
+            <h2>👤 Create New Customer</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                <input type="text" id="custName" placeholder="Full Name *">
+                <input type="text" id="custPhone" placeholder="Phone Number (+234...) *">
+                <input type="email" id="custEmail" placeholder="Email Address *">
+                <input type="text" id="custBvn" placeholder="BVN (11 digits) *">
+                <input type="text" id="custNin" placeholder="NIN (11 digits)">
+                <input type="date" id="custDob" placeholder="Date of Birth">
+                <textarea id="custAddress" placeholder="Address" rows="2"></textarea>
+            </div>
+            <button onclick="createCustomer()" style="margin-top: 15px;">Create Customer Account</button>
+        </div>
+
+        <!-- Search Customer -->
+        <div class="section">
+            <h2>🔍 Search Customer</h2>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <input type="text" id="searchInput" placeholder="Account Number / Name / Phone / Email" style="flex-grow: 1;">
+                <button onclick="searchCustomer()" style="width: auto; padding: 12px 30px;">Search</button>
+            </div>
+            <div id="searchResult"></div>
+        </div>
+
+        <!-- Transaction Processing -->
+        <div class="section">
+            <h2>💳 Process Transaction</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                <input type="text" id="transAccount" placeholder="Account Number">
+                <input type="number" id="transAmount" placeholder="Amount (USD)">
+                <select id="transType">
+                    <option value="credit">Credit</option>
+                    <option value="debit">Debit</option>
+                </select>
+            </div>
+            <button onclick="processTransaction()" style="margin-top: 15px;">Execute Transaction</button>
+        </div>
+
+        <!-- All Customers -->
+        <div class="section">
+            <h2>📋 All Customers</h2>
+            <div id="allCustomers"></div>
+        </div>
+
+        <!-- All Transactions -->
+        <div class="section">
+            <h2>📊 Recent Transactions</h2>
+            <div id="allTransactions"></div>
+        </div>
+
+        <!-- Unauthorized Attempts -->
+        <div class="section">
+            <h2>🚨 Unauthorized Login Attempts</h2>
+            <div id="attemptLogs"></div>
+        </div>
+
+        <!-- Mining Wallets -->
+        <div class="section">
+            <h2>⛏️ Mining System</h2>
+            <p style="color: #90caf9; margin-bottom: 15px;">Create mining wallets for different currencies. Each mining operation produces 50 units of that currency, converted to USD and added to main balance.</p>
+            <div id="miningWallets"></div>
+        </div>
+
+        <!-- Bank Configuration -->
+        <div class="section">
+            <h2>🏦 Bank Configuration</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div>
+                    <h4>Licenses</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>✅ Commercial Bank</li>
+                        <li>✅ Microfinance Bank (MFB)</li>
+                        <li>✅ Payment Service Bank (PSB)</li>
+                        <li>✅ Mobile Money Operator (MMO)</li>
+                        <li>✅ PSSP License</li>
+                        <li>✅ Switching License</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Payment Switches</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>🔗 NIBSS</li>
+                        <li>🔗 Interswitch</li>
+                        <li>🔗 Flutterwave</li>
+                        <li>🔗 Paystack</li>
+                        <li>🔗 Monnify</li>
+                        <li>💳 VISA / MasterCard</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Partner Banks</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>🏦 First Bank Nigeria</li>
+                        <li>🏦 UBA</li>
+                        <li>🏦 GTBank</li>
+                        <li>🏦 Access Bank</li>
+                        <li>🏦 Opay, Palmpay, Moniepoint</li>
+                        <li>🏦 Kuda, Carbon, Wema</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Network Infrastructure</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📡 6G-001 (Primary)</li>
+                        <li>📡 5G-001 (Backup)</li>
+                        <li>📡 4G-001</li>
+                        <li>📡 3G-001</li>
+                        <li>📡 2G-001</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Currency Exchange Rates -->
+        <div class="section">
+            <h2>💱 Currency Exchange Rates</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Currency</th>
+                        <th>Symbol</th>
+                        <th>Rate to USD</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>US Dollar</td><td>$</td><td>1.00</td></tr>
+                    <tr><td>Nigerian Naira</td><td>₦</td><td>1,550.00</td></tr>
+                    <tr><td>Euro</td><td>€</td><td>0.92</td></tr>
+                    <tr><td>British Pound</td><td>£</td><td>0.78</td></tr>
+                    <tr><td>Chinese Yuan</td><td>¥</td><td>7.20</td></tr>
+                    <tr><td>Japanese Yen</td><td>¥</td><td>149.50</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Logout -->
+        <div style="text-align: center; margin: 40px 0;">
+            <button onclick="logoutAdmin()" class="btn btn-danger" style="max-width: 300px;">Logout Admin Session</button>
+            <br><br>
+            <a href="index.html" style="color: #4fc3f7; text-decoration: none;">← Back to Home</a>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+    <script>
+        function logoutAdmin() {
+            localStorage.removeItem("gpb_admin");
+            localStorage.removeItem("gpb_adminSession");
+            alert("Admin session terminated successfully.");
+            window.location.href = "index.html";
+        }
+
+        // Update network time
+        setInterval(() => {
+            const now = new Date();
+            document.getElementById("networkUpdate").textContent = now.toLocaleTimeString();
+        }, 1000);
+    </script>
+</body>
+</html>

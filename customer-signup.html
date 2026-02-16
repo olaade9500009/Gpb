@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Signup - Global Pilgrim Bank</title>
+    <link rel="stylesheet" href="css/style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>GLOBAL PILGRIM BANK</h1>
+        <h3>Customer Registration</h3>
+    </header>
+
+    <div class="section" style="max-width: 600px; margin: 40px auto;">
+        <h2>📝 Create Your Account</h2>
+        <p style="color: #90caf9; margin-bottom: 20px;">
+            Join Global Pilgrim Bank and experience world-class banking services
+        </p>
+
+        <input type="text" id="custName" placeholder="Full Name *">
+        <input type="text" id="custPhone" placeholder="Phone Number (+234...) *">
+        <input type="email" id="custEmail" placeholder="Email Address *">
+        <input type="password" id="custPassword" placeholder="Password *">
+        <input type="password" id="custConfirmPassword" placeholder="Confirm Password *">
+
+        <div style="background: rgba(255,193,7,0.1); padding: 15px; border-radius: 8px; border: 1px solid #ffc107; margin: 20px 0;">
+            <h4 style="color: #ffc107; margin-bottom: 10px;">📋 Important Information</h4>
+            <p style="font-size: 0.9em; color: #ffe082;">
+                • Your account will be created in PENDING status<br>
+                • You must make an initial deposit to activate your account<br>
+                • Admin approval required before you can send money<br>
+                • BVN and NIN verification will be required for full access
+            </p>
+        </div>
+
+        <button onclick="customerSignup()">Create Account</button>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <p style="color: #90caf9;">Already have an account?</p>
+            <a href="customer-login.html" style="color: #4fc3f7; text-decoration: none;">Login Here</a>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="index.html" style="color: #4fc3f7; text-decoration: none;">← Back to Home</a>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

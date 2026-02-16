@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Login - Global Pilgrim Bank</title>
+    <link rel="stylesheet" href="css/style.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <header>
+        <h1>GLOBAL PILGRIM BANK</h1>
+        <h3>Customer Portal</h3>
+    </header>
+
+    <div class="login-box">
+        <h2>👤 Customer Login</h2>
+        <p style="text-align: center; color: #90caf9; margin-bottom: 20px;">
+            Welcome to Global Pilgrim Bank
+        </p>
+
+        <input type="text" id="custAccountLogin" placeholder="Account Number (GPB...)">
+        <input type="password" id="custPasswordLogin" placeholder="Password">
+
+        <button onclick="customerLogin()">🔑 Login to Dashboard</button>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <p style="color: #90caf9;">Don't have an account?</p>
+            <a href="customer-signup.html" style="color: #4fc3f7; text-decoration: none;">Sign Up Now</a>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+            <a href="index.html" style="color: #4fc3f7; text-decoration: none;">← Back to Home</a>
+        </div>
+    </div>
+
+    <div class="section" style="max-width: 800px; margin: 20px auto;">
+        <h3>📱 USSD Banking</h3>
+        <p style="color: #90caf9;">Dial *999# from your phone to access banking services</p>
+        <ul style="color: #b0bec5; margin-top: 10px;">
+            <li>*999# - Main Menu</li>
+            <li>*999*1# - Check Balance</li>
+            <li>*999*2# - Transfer Money</li>
+            <li>*999*3# - Buy Airtime</li>
+        </ul>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
